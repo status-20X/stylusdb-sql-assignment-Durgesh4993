@@ -1,12 +1,20 @@
-// tests/index.test.js
+// src/index.js
 
-const parseQuery = require('../src/queryParser');
+const parseQuery = require('./queryParser');
+const readCSV = require('./csvReader');
 
-test('Parse SQL Query', () => {
-    const query = 'SELECT id, name FROM sample';
-    const parsed = parseQuery(query);
-    expect(parsed).toEqual({
-        fields: ['id', 'name'],
-        table: 'sample'
+async function executeSELECTQuery(query) {
+    const { fields, table } = parseQuery(query);
+    const data = await readCSV(`${table}.csv`);
+    
+    // Filter the fields based on the query
+    return data.map(row => {
+        const filteredRow = {};
+        fields.forEach(field => {
+            filteredRow[field] = row[field];
+        });
+        return filteredRow;
     });
-});
+}
+
+module.exports = executeSELECTQuery;
