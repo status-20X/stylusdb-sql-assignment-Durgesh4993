@@ -1,13 +1,12 @@
-// src/index.js
-function evaluateCondition(row, clause) {
-    const { field, operator, value } = clause;
-    switch (operator) {
-        case '=': return row[field] === value;
-        case '!=': return row[field] !== value;
-        case '>': return row[field] > value;
-        case '<': return row[field] < value;
-        case '>=': return row[field] >= value;
-        case '<=': return row[field] <= value;
-        default: throw new Error(`Unsupported operator: ${operator}`);
-    }
-}
+// tests/index.test.js
+
+const parseQuery = require('../src/queryParser');
+
+test('Parse SQL Query', () => {
+    const query = 'SELECT id, name FROM sample';
+    const parsed = parseQuery(query);
+    expect(parsed).toEqual({
+        fields: ['id', 'name'],
+        table: 'sample'
+    });
+});
