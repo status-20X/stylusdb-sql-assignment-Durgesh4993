@@ -20,7 +20,7 @@ This database is for educational purposes only. It is not intended for productio
 - [x] CLI
 - [x] Server/Client Basic Protocol
 - [x] NPM Package for StylusDB-SQL
-- [ ] `UPDATE`, `CREATE TABLE`, `DROP TABLE`
-- [ ] SQL Spec Tracker
-- [ ] Minimal PostgreSQL Protocol for Server/Client Communication
+- [x] `UPDATE`, `CREATE TABLE`, `DROP TABLE`
+- [x] SQL Spec Tracker
+- [x] Minimal PostgreSQL Protocol for Server/Client Communication
 
